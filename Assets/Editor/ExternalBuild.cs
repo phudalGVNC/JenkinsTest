@@ -11,7 +11,7 @@ public class ExternalBuild
 
         BuildPipeline.BuildPlayer(
             sceneList.ToArray(),
-            "JenkinsTest",
+            "Builds/JenkinsTest.apk",
             BuildTarget.Android,
             BuildOptions.None);
     }
