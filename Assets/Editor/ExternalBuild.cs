@@ -12,7 +12,7 @@ public class ExternalBuild
 
         BuildPipeline.BuildPlayer(
             sceneList.ToArray(),
-            string.Format($"Builds/{DateTime.Now}.apk"),
+            string.Format($"Builds/{DateTime.Now.Year}_{DateTime.Now.Month}_{DateTime.Now.Day}_{DateTime.Now.Hour}_{DateTime.Now.Minute}.apk"),
             BuildTarget.Android,
             BuildOptions.None);
     }
