@@ -21,11 +21,13 @@ public class ExternalBuild
         }
 
         BuildCore_APK(serverType);
+
+        BuildCore_AAB(serverType);
     }
 
     public static void BuildCore_APK(string serverType)
     {
-        var sceneList = new List<EditorBuildSettingsScene>(EditorBuildSettings.scenes);
+        var sceneList = new List<EditorBuildSettingsScene>(EditorBuildSettings.scenes); 
 
         PlayerSettings.Android.useAPKExpansionFiles = false;
         EditorUserBuildSettings.buildAppBundle = false;
@@ -37,7 +39,7 @@ public class ExternalBuild
             BuildOptions.None);
     }
 
-    public static void BuildCore_AAB()
+    public static void BuildCore_AAB(string serverType)
     {
         var sceneList = new List<EditorBuildSettingsScene>(EditorBuildSettings.scenes);
 
@@ -46,7 +48,7 @@ public class ExternalBuild
 
         BuildPipeline.BuildPlayer(
             sceneList.ToArray(),
-            string.Format($"Output/{DateTime.Now.Year}{DateTime.Now.Month.ToString("D2")}{DateTime.Now.Day.ToString("D2")}{DateTime.Now.Hour.ToString("D2")}{DateTime.Now.Minute.ToString("D2")}.aab"),
+            string.Format($"Output/{DateTime.Now.Year}{DateTime.Now.Month.ToString("D2")}{DateTime.Now.Day.ToString("D2")}{DateTime.Now.Hour.ToString("D2")}{DateTime.Now.Minute.ToString("D2")}_{serverType}.aab"),
             BuildTarget.Android,
             BuildOptions.None);
     }
