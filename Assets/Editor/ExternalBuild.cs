@@ -6,7 +6,7 @@ using System;
 
 public class ExternalBuild
 {
-    public static void BuildCore()
+    public static void BuildCore_APK()
     {
         string serverType = "Default";
         string[] args = System.Environment.GetCommandLineArgs();
@@ -20,13 +20,6 @@ public class ExternalBuild
             }
         }
 
-        BuildCore_APK(serverType);
-
-        BuildCore_AAB(serverType);
-    }
-
-    public static void BuildCore_APK(string serverType)
-    {
         var sceneList = new List<EditorBuildSettingsScene>(EditorBuildSettings.scenes); 
 
         PlayerSettings.Android.useAPKExpansionFiles = false;
@@ -39,8 +32,20 @@ public class ExternalBuild
             BuildOptions.None);
     }
 
-    public static void BuildCore_AAB(string serverType)
+    public static void BuildCore_AAB()
     {
+        string serverType = "Default";
+        string[] args = System.Environment.GetCommandLineArgs();
+
+        for (int i = 0; i < args.Length; i++)
+        {
+            if (args[i] == "-serverType" && i + 1 < args.Length)
+            {
+                serverType = args[i + 1];
+                break;
+            }
+        }
+
         var sceneList = new List<EditorBuildSettingsScene>(EditorBuildSettings.scenes);
 
         PlayerSettings.Android.useAPKExpansionFiles = true;
