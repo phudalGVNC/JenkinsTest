@@ -25,9 +25,11 @@ public class ExternalBuild
         PlayerSettings.Android.useAPKExpansionFiles = false;
         EditorUserBuildSettings.buildAppBundle = false;
 
+        string apkName = string.Format($"Output/{DateTime.Now.Year}{DateTime.Now.Month.ToString("D2")}{DateTime.Now.Day.ToString("D2")}{DateTime.Now.Hour.ToString("D2")}{DateTime.Now.Minute.ToString("D2")}_{serverType}");
+
         BuildPipeline.BuildPlayer(
             sceneList.ToArray(),
-            string.Format($"Output/{DateTime.Now.Year}{DateTime.Now.Month.ToString("D2")}{DateTime.Now.Day.ToString("D2")}{DateTime.Now.Hour.ToString("D2")}{DateTime.Now.Minute.ToString("D2")}_{serverType}.apk"),
+            apkName + ".apk",
             BuildTarget.Android,
             BuildOptions.None);
     }
@@ -51,9 +53,11 @@ public class ExternalBuild
         PlayerSettings.Android.useAPKExpansionFiles = true;
         EditorUserBuildSettings.buildAppBundle = true;
 
+        string apkName = string.Format($"Output/{DateTime.Now.Year}{DateTime.Now.Month.ToString("D2")}{DateTime.Now.Day.ToString("D2")}{DateTime.Now.Hour.ToString("D2")}{DateTime.Now.Minute.ToString("D2")}_{serverType}");
+
         BuildPipeline.BuildPlayer(
             sceneList.ToArray(),
-            string.Format($"Output/{DateTime.Now.Year}{DateTime.Now.Month.ToString("D2")}{DateTime.Now.Day.ToString("D2")}{DateTime.Now.Hour.ToString("D2")}{DateTime.Now.Minute.ToString("D2")}_{serverType}.aab"),
+            apkName + ".aab",
             BuildTarget.Android,
             BuildOptions.None);
     }
